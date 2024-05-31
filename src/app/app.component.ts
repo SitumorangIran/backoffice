@@ -1,13 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  standalone: true,
+  imports: [CommonModule, FormsModule]
 })
 export class AppComponent {
-  title = 'ngproject';
+  username: string = '';
+  password: string = '';
+
+  onSubmit() {
+    if (this.username === 'admin' && this.password === 'password') {
+      alert('Login successful!');
+    } else {
+      alert('Invalid username or password');
+    }
+  }
 }

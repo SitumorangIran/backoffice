@@ -1,29 +1,45 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent, FormsModule]
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it(`should have the 'ngproject' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ngproject');
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ngproject');
+    expect(compiled.querySelector('h2')?.textContent).toContain('Login');
+  });
+
+  it('should login with correct credentials', () => {
+    spyOn(window, 'alert');
+    component.username = 'admin';
+    component.password = 'password';
+    component.onSubmit();
+    expect(window.alert).toHaveBeenCalledWith('Login successful!');
+  });
+
+  it('should show error with incorrect credentials', () => {
+    spyOn(window, 'alert');
+    component.username = 'admin';
+    component.password = 'wrongpassword';
+    component.onSubmit();
+    expect(window.alert).toHaveBeenCalledWith('Invalid username or password');
   });
 });
