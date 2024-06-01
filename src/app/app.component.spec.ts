@@ -30,7 +30,7 @@ describe('AppComponent', () => {
   it('should login with correct credentials', () => {
     spyOn(window, 'alert');
     component.username = 'admin';
-    component.password = 'password';
+    component.password = 'admin';
     component.onSubmit();
     expect(window.alert).toHaveBeenCalledWith('Login successful!');
   });
