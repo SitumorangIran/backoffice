@@ -12,8 +12,8 @@ import { filter } from 'rxjs/operators';
   imports: [CommonModule, FormsModule, RouterModule]
 })
 export class AppComponent {
-  username: string = '';
-  password: string = '';
+  username: string = 'admin';
+  password: string = 'admin';
   currentRoute: string = '';
 
   constructor(private router: Router, private route: ActivatedRoute) {
