@@ -1,16 +1,39 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Input Your Username" class="form-control" [(ngModel)]="username" required />
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Input Your Password" class="form-control" [(ngModel)]="password" required />
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">
-      Login
-    </button>
-  </form>
+<div *ngIf="currentRoute === '/login' || currentRoute === '/'">
+  <div class="login-container">
+    <h2>Login</h2>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Input Your Username"
+          class="form-control"
+          [(ngModel)]="username"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Input Your Password"
+          class="form-control"
+          [(ngModel)]="password"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.form.valid"
+      >
+        Login
+      </button>
+    </form>
+  </div>
 </div>
+<router-outlet *ngIf="currentRoute !== '/login' && currentRoute !== '/'"></router-outlet>
